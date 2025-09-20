@@ -1,0 +1,111 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WellnessApp.MainPage"
+             BackgroundColor="#f5f5f5">
+
+    <Grid RowDefinitions="Auto, 10, Auto, 10, Auto, 10, Auto, 10, Auto, 10, Auto, *" 
+          Padding="20"
+          RowSpacing="10"
+          VerticalOptions="CenterAndExpand">
+
+        <!-- Title -->
+        <Label Text="Daily Wellness Score" 
+               Grid.Row="0"
+               FontAttributes="Bold"
+               FontSize="30" 
+               HorizontalOptions="Center" 
+               TextColor="#2c3e50" />
+
+        <!-- Gender Selection -->
+        <Border Grid.Row="2"
+                Stroke="#ddd"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10"
+                Padding="10">
+            <StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="Center">
+                <Border x:Name="MaleBorder"
+                        Stroke="Blue"
+                        StrokeThickness="3"
+                        StrokeShape="RoundRectangle 10"
+                        WidthRequest="80"
+                        HeightRequest="80">
+                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Spacing="5">
+                        <Image x:Name="MaleImage"
+                               Source="male.png"
+                               Aspect="AspectFit"
+                               WidthRequest="50"
+                               HeightRequest="50"
+                               SemanticProperties.Description="Select male gender">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="GenderImage_Tapped" CommandParameter="Male" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="Male" FontSize="12" HorizontalOptions="Center" />
+                    </StackLayout>
+                </Border>
+                <Border x:Name="FemaleBorder"
+                        Stroke="HotPink"
+                        StrokeThickness="3"
+                        StrokeShape="RoundRectangle 10"
+                        WidthRequest="80"
+                        HeightRequest="80">
+                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Spacing="5">
+                        <Image x:Name="FemaleImage"
+                               Source="female.png"
+                               Aspect="AspectFit"
+                               WidthRequest="50"
+                               HeightRequest="50"
+                               SemanticProperties.Description="Select female gender">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="GenderImage_Tapped" CommandParameter="Female" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="Female" FontSize="12" HorizontalOptions="Center" />
+                    </StackLayout>
+                </Border>
+            </StackLayout>
+        </Border>
+
+        <!-- Sleep Hours Slider -->
+        <StackLayout Grid.Row="4" Spacing="5">
+            <Label Text="Sleep Hours" FontAttributes="Bold" FontSize="18" TextColor="#2c3e50"/>
+            <Label x:Name="SleepHoursLabel" Text="7.0 h" FontSize="16" HorizontalOptions="End" TextColor="#34495e"/>
+            <Slider x:Name="SleepHoursSlider" 
+                    Minimum="0" Maximum="12" Value="7" 
+                    MaximumTrackColor="#bdc3c7" MinimumTrackColor="#3498db" 
+                    ThumbColor="#2980b9" ValueChanged="Slider_ValueChanged"/>
+        </StackLayout>
+
+        <!-- Stress Level Slider -->
+        <StackLayout Grid.Row="6" Spacing="5">
+            <Label Text="Stress Level" FontAttributes="Bold" FontSize="18" TextColor="#2c3e50"/>
+            <Label x:Name="StressLevelLabel" Text="4.0" FontSize="16" HorizontalOptions="End" TextColor="#34495e"/>
+            <Slider x:Name="StressLevelSlider" 
+                    Minimum="0" Maximum="10" Value="4" 
+                    MaximumTrackColor="#bdc3c7" MinimumTrackColor="#3498db" 
+                    ThumbColor="#2980b9" ValueChanged="Slider_ValueChanged"/>
+        </StackLayout>
+
+        <!-- Activity Minutes Slider -->
+        <StackLayout Grid.Row="8" Spacing="5">
+            <Label Text="Activity Minutes" FontAttributes="Bold" FontSize="18" TextColor="#2c3e50"/>
+            <Label x:Name="ActivityMinutesLabel" Text="30.0 min" FontSize="16" HorizontalOptions="End" TextColor="#34495e"/>
+            <Slider x:Name="ActivityMinutesSlider" 
+                    Minimum="0" Maximum="120" Value="30" 
+                    MaximumTrackColor="#bdc3c7" MinimumTrackColor="#3498db" 
+                    ThumbColor="#2980b9" ValueChanged="Slider_ValueChanged"/>
+        </StackLayout>
+
+        <!-- Calculate Button -->
+        <Button x:Name="CalculateButton" 
+                Text="Calculate Wellness Score"
+                Grid.Row="10"
+                HorizontalOptions="Center"
+                BackgroundColor="#2980b9"
+                TextColor="White"
+                FontSize="20"
+                CornerRadius="10"
+                Clicked="CalculateButton_Clicked" />
+
+    </Grid>
+</ContentPage>
