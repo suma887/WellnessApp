@@ -1,8 +1,8 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AutismSupportApp.MainPage"
+             x:Class="WellnessApp.MainPage"
              BackgroundImageSource="soft_bg.jpg"
-             Title="Daily Activity Tracker">
+             Title="Mentor_Tracker">
 
     <!-- Use a Grid to position button at bottom -->
     <Grid RowDefinitions="Auto,* ,Auto"
@@ -14,11 +14,11 @@
             <StackLayout Spacing="15">
 
                 <!-- Title -->
-                <Label Text="Daily Activity Tracker"
+                <Label Text="Daily Tracker"
                        FontAttributes="Bold"
                        FontSize="28"
                        HorizontalOptions="Center"
-                       TextColor="#1e3a8a" />
+                       TextColor="DarkViolet" />
 
                 <!-- Child Info Section -->
                 <Frame BackgroundColor="#ffffffcc"

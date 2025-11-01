@@ -1,4 +1,5 @@
-﻿namespace AutismSupportApp;
+﻿namespace WellnessApp;
+
 
 public partial class MainPage : ContentPage
 {

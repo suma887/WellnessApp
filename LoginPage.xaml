@@ -1,0 +1,54 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutismSupportApp.LoginPage"
+             BackgroundColor="#e0f2fe"
+             Title="Mentor Login">
+
+    <Grid RowDefinitions="*,Auto" Padding="25">
+
+        <StackLayout VerticalOptions="Center" Spacing="20">
+
+            <Label Text="Welcome Mentor 👋"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#1e3a8a"/>
+
+            <Frame BackgroundColor="White"
+                   CornerRadius="15"
+                   Padding="20"
+                   HasShadow="True">
+
+                <StackLayout Spacing="15">
+
+                    <Entry x:Name="UsernameEntry"
+                           Placeholder="Enter Username"
+                           PlaceholderColor="#94a3b8"
+                           FontSize="18"
+                           TextColor="#1e293b" />
+
+                    <Entry x:Name="PasswordEntry"
+                           Placeholder="Enter Password"
+                           IsPassword="True"
+                           PlaceholderColor="#94a3b8"
+                           FontSize="18"
+                           TextColor="#1e293b" />
+
+                    <Button Text="Login"
+                            BackgroundColor="#2563eb"
+                            TextColor="White"
+                            FontSize="18"
+                            HeightRequest="45"
+                            CornerRadius="25"
+                            Clicked="OnLoginClicked" />
+                </StackLayout>
+            </Frame>
+
+            <Label Text="Autism Daily Activity Tracker"
+                   FontAttributes="Italic"
+                   HorizontalOptions="Center"
+                   TextColor="#334155"/>
+
+        </StackLayout>
+    </Grid>
+</ContentPage>
