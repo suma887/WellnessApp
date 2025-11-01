@@ -1,111 +1,171 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WellnessApp.MainPage"
-             BackgroundColor="#f5f5f5">
+             x:Class="AutismSupportApp.MainPage"
+             BackgroundImageSource="soft_bg.jpg"
+             Title="Daily Activity Tracker">
 
-    <Grid RowDefinitions="Auto, 10, Auto, 10, Auto, 10, Auto, 10, Auto, 10, Auto, *" 
+    <!-- Use a Grid to position button at bottom -->
+    <Grid RowDefinitions="Auto,* ,Auto"
           Padding="20"
-          RowSpacing="10"
-          VerticalOptions="CenterAndExpand">
+          RowSpacing="15">
 
-        <!-- Title -->
-        <Label Text="Daily Wellness Score" 
-               Grid.Row="0"
-               FontAttributes="Bold"
-               FontSize="30" 
-               HorizontalOptions="Center" 
-               TextColor="#2c3e50" />
+        <!-- Scrollable Main Content -->
+        <ScrollView Grid.Row="1">
+            <StackLayout Spacing="15">
 
-        <!-- Gender Selection -->
-        <Border Grid.Row="2"
-                Stroke="#ddd"
-                StrokeThickness="1"
-                StrokeShape="RoundRectangle 10"
-                Padding="10">
-            <StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="Center">
-                <Border x:Name="MaleBorder"
-                        Stroke="Blue"
-                        StrokeThickness="3"
-                        StrokeShape="RoundRectangle 10"
-                        WidthRequest="80"
-                        HeightRequest="80">
-                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Spacing="5">
-                        <Image x:Name="MaleImage"
-                               Source="male.png"
-                               Aspect="AspectFit"
-                               WidthRequest="50"
-                               HeightRequest="50"
-                               SemanticProperties.Description="Select male gender">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="GenderImage_Tapped" CommandParameter="Male" />
-                            </Image.GestureRecognizers>
-                        </Image>
-                        <Label Text="Male" FontSize="12" HorizontalOptions="Center" />
+                <!-- Title -->
+                <Label Text="Daily Activity Tracker"
+                       FontAttributes="Bold"
+                       FontSize="28"
+                       HorizontalOptions="Center"
+                       TextColor="#1e3a8a" />
+
+                <!-- Child Info Section -->
+                <Frame BackgroundColor="#ffffffcc"
+                       BorderColor="#cbd5e1"
+                       CornerRadius="12"
+                       Padding="15">
+                    <StackLayout Spacing="10">
+                        <Label Text="Child Information"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="#1e293b"/>
+
+                        <Entry x:Name="ChildNameEntry"
+                               Placeholder="Enter child’s name"
+                               FontSize="16"
+                               TextColor="#1e293b"/>
+
+                        <DatePicker x:Name="DatePicker"
+                                    Format="D"
+                                    TextColor="#1e293b" />
                     </StackLayout>
-                </Border>
-                <Border x:Name="FemaleBorder"
-                        Stroke="HotPink"
-                        StrokeThickness="3"
-                        StrokeShape="RoundRectangle 10"
-                        WidthRequest="80"
-                        HeightRequest="80">
-                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Spacing="5">
-                        <Image x:Name="FemaleImage"
-                               Source="female.png"
-                               Aspect="AspectFit"
-                               WidthRequest="50"
-                               HeightRequest="50"
-                               SemanticProperties.Description="Select female gender">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="GenderImage_Tapped" CommandParameter="Female" />
-                            </Image.GestureRecognizers>
-                        </Image>
-                        <Label Text="Female" FontSize="12" HorizontalOptions="Center" />
+                </Frame>
+
+                <!-- Mood Tracker -->
+                <Frame BackgroundColor="#ffffffcc"
+                       BorderColor="#cbd5e1"
+                       CornerRadius="12"
+                       Padding="15">
+                    <StackLayout Spacing="10">
+                        <Label Text="Mood Level"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="#1e293b"/>
+
+                        <Label x:Name="MoodLabel" Text="Happy 😊"
+                               FontSize="16"
+                               HorizontalOptions="Center"/>
+
+                        <Slider x:Name="MoodSlider"
+                                Minimum="0" Maximum="4" Value="2"
+                                MinimumTrackColor="#60a5fa"
+                                ThumbColor="#2563eb"
+                                ValueChanged="MoodSlider_ValueChanged"/>
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
+                            <Label Text="Sad 😞"/>
+                            <Label Text="Calm 😌"/>
+                            <Label Text="Happy 😊"/>
+                            <Label Text="Excited 🤩"/>
+                            <Label Text="Overstimulated 😣"/>
+                        </StackLayout>
                     </StackLayout>
-                </Border>
+                </Frame>
+
+                <!-- Focus Level -->
+                <Frame BackgroundColor="#ffffffcc"
+                       BorderColor="#cbd5e1"
+                       CornerRadius="12"
+                       Padding="15">
+                    <StackLayout Spacing="10">
+                        <Label Text="Focus Level (1–10)"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="#1e293b"/>
+                        <Label x:Name="FocusLabel" Text="5" HorizontalOptions="End" />
+                        <Slider x:Name="FocusSlider"
+                                Minimum="1" Maximum="10" Value="5"
+                                MinimumTrackColor="#60a5fa"
+                                ThumbColor="#2563eb"
+                                ValueChanged="Slider_ValueChanged"/>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Communication Activity -->
+                <Frame BackgroundColor="#ffffffcc"
+                       BorderColor="#cbd5e1"
+                       CornerRadius="12"
+                       Padding="15">
+                    <StackLayout Spacing="10">
+                        <Label Text="Communication Type"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="#1e293b"/>
+                        <Picker x:Name="CommunicationPicker"
+                                Title="Select interaction type">
+                            <Picker.Items>
+                                <x:String>Spoke clearly</x:String>
+                                <x:String>Used gestures</x:String>
+                                <x:String>Limited response</x:String>
+                                <x:String>No communication</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Activity Duration -->
+                <Frame BackgroundColor="#ffffffcc"
+                       BorderColor="#cbd5e1"
+                       CornerRadius="12"
+                       Padding="15">
+                    <StackLayout Spacing="10">
+                        <Label Text="Activity Duration"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="#1e293b"/>
+                        <Label x:Name="ActivityLabel" Text="30 min" HorizontalOptions="End"/>
+                        <Slider x:Name="ActivitySlider"
+                                Minimum="0" Maximum="180" Value="30"
+                                MinimumTrackColor="#60a5fa"
+                                ThumbColor="#2563eb"
+                                ValueChanged="Slider_ValueChanged"/>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Notes Section -->
+                <Frame BackgroundColor="#ffffffcc"
+                       BorderColor="#cbd5e1"
+                       CornerRadius="12"
+                       Padding="15">
+                    <StackLayout Spacing="10">
+                        <Label Text="Mentor Notes"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="#1e293b"/>
+                        <Editor x:Name="NotesEditor"
+                                Placeholder="Enter observations, behavior notes, or triggers..."
+                                AutoSize="TextChanges"
+                                FontSize="16"
+                                TextColor="#1e293b"/>
+                    </StackLayout>
+                </Frame>
+
             </StackLayout>
-        </Border>
+        </ScrollView>
 
-        <!-- Sleep Hours Slider -->
-        <StackLayout Grid.Row="4" Spacing="5">
-            <Label Text="Sleep Hours" FontAttributes="Bold" FontSize="18" TextColor="#2c3e50"/>
-            <Label x:Name="SleepHoursLabel" Text="7.0 h" FontSize="16" HorizontalOptions="End" TextColor="#34495e"/>
-            <Slider x:Name="SleepHoursSlider" 
-                    Minimum="0" Maximum="12" Value="7" 
-                    MaximumTrackColor="#bdc3c7" MinimumTrackColor="#3498db" 
-                    ThumbColor="#2980b9" ValueChanged="Slider_ValueChanged"/>
-        </StackLayout>
-
-        <!-- Stress Level Slider -->
-        <StackLayout Grid.Row="6" Spacing="5">
-            <Label Text="Stress Level" FontAttributes="Bold" FontSize="18" TextColor="#2c3e50"/>
-            <Label x:Name="StressLevelLabel" Text="4.0" FontSize="16" HorizontalOptions="End" TextColor="#34495e"/>
-            <Slider x:Name="StressLevelSlider" 
-                    Minimum="0" Maximum="10" Value="4" 
-                    MaximumTrackColor="#bdc3c7" MinimumTrackColor="#3498db" 
-                    ThumbColor="#2980b9" ValueChanged="Slider_ValueChanged"/>
-        </StackLayout>
-
-        <!-- Activity Minutes Slider -->
-        <StackLayout Grid.Row="8" Spacing="5">
-            <Label Text="Activity Minutes" FontAttributes="Bold" FontSize="18" TextColor="#2c3e50"/>
-            <Label x:Name="ActivityMinutesLabel" Text="30.0 min" FontSize="16" HorizontalOptions="End" TextColor="#34495e"/>
-            <Slider x:Name="ActivityMinutesSlider" 
-                    Minimum="0" Maximum="120" Value="30" 
-                    MaximumTrackColor="#bdc3c7" MinimumTrackColor="#3498db" 
-                    ThumbColor="#2980b9" ValueChanged="Slider_ValueChanged"/>
-        </StackLayout>
-
-        <!-- Calculate Button -->
-        <Button x:Name="CalculateButton" 
-                Text="Calculate Wellness Score"
-                Grid.Row="10"
-                HorizontalOptions="Center"
-                BackgroundColor="#2980b9"
+        <!-- Bottom-aligned Button -->
+        <Button Grid.Row="2"
+                Text="Save Daily Report"
+                BackgroundColor="#2563eb"
                 TextColor="White"
-                FontSize="20"
-                CornerRadius="10"
-                Clicked="CalculateButton_Clicked" />
-
+                FontSize="18"
+                WidthRequest="220"
+                HeightRequest="45"
+                CornerRadius="25"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Margin="0,10,0,20"
+                Clicked="SaveButton_Clicked" />
     </Grid>
 </ContentPage>
